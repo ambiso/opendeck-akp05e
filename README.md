@@ -1,8 +1,8 @@
 ![Plugin Icon](assets/icon.png)
 
-# OpenDeck Ajazz AKP03 / Mirabox N3 Plugin
+# OpenDeck Ajazz AKP05E / Mirabox N4 Plugin
 
-An unofficial plugin for Mirabox N3-family devices
+An unofficial plugin for Mirabox N4-family devices
 
 ## OpenDeck version
 
@@ -10,16 +10,7 @@ Requires OpenDeck 2.5.0 or newer
 
 ## Supported devices
 
-- Ajazz AKP03 (0300:1001)
-- Ajazz AKP03E (0300:1002)
-- Ajazz AKP03R (0300:1003)
-- Ajazz AKP03E (rev. 2) (0300:3002)
-- Mirabox N3 (6602:1002)
-- Mirabox N3EN (6603:1003)
-- Soomfon Stream Controller SE (1500:3001)
-- Mars Gaming MSD-TWO (0B00:1001)
-- TreasLin N3 (5548:1001)
-- Redragon Skyrider SS-551 (0200:2000)
+- Mirabox N4 (6603:1007)
 
 ## Platform support
 

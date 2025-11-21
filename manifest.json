@@ -1,12 +1,12 @@
 {
-  "Name": "Ajazz AKP03 / Mirabox N3",
-  "Description": "Device support plugin for Ajazz AKP03 (+variants)",
-  "Author": "Andrey Viktorov",
+  "Name": "Ajazz AKP05E / Mirabox N4",
+  "Description": "Device support plugin for Ajazz AKP05E (+variants)",
+  "Author": "ambiso",
   "Version": "0.7.3",
-  "PluginUUID": "st.lynx.plugins.opendeck-akp03",
-  "CodePathLin": "opendeck-akp03-linux",
-  "CodePathMac": "opendeck-akp03-mac",
-  "CodePathWin": "opendeck-akp03-win.exe",
+  "PluginUUID": "com.github.ambiso.opendeck-akp05e",
+  "CodePathLin": "opendeck-akp05e-linux",
+  "CodePathMac": "opendeck-akp05e-mac",
+  "CodePathWin": "opendeck-akp05e-win.exe",
   "Icon": "assets/icon",
   "Category": "Hardware",
   "OS": [
@@ -15,5 +15,5 @@
     { "Platform": "windows", "MinimumVersion": "10" }
   ],
   "Actions": [],
-  "DeviceNamespace": "n3"
+  "DeviceNamespace": "n4"
 }

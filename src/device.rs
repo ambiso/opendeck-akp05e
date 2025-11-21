@@ -6,7 +6,9 @@ use tokio_util::sync::CancellationToken;
 
 use crate::{
     DEVICES, TOKENS,
-    mappings::{COL_COUNT, CandidateDevice, ENCODER_COUNT, KEY_COUNT, Kind, ROW_COUNT},
+    mappings::{
+        COL_COUNT, CandidateDevice, DEVICE_TYPE, ENCODER_COUNT, KEY_COUNT, Kind, ROW_COUNT,
+    },
 };
 
 /// Initializes a device and listens for events
@@ -48,7 +50,7 @@ pub async fn device_task(candidate: CandidateDevice, token: CancellationToken) {
                 ROW_COUNT as u8,
                 COL_COUNT as u8,
                 ENCODER_COUNT as u8,
-                0,
+                DEVICE_TYPE,
             )
             .await
             .unwrap();
@@ -176,9 +178,34 @@ async fn device_events_task(candidate: &CandidateDevice) -> Result<(), MirajazzE
 
 /// Handles different combinations of "set image" event, including clearing the specific buttons and whole device
 pub async fn handle_set_image(device: &Device, evt: SetImageEvent) -> Result<(), MirajazzError> {
+    let is_encoder = evt.controller.as_deref() == Some("Encoder");
     match (evt.position, evt.image) {
-        (Some(position), Some(image)) => {
+        (Some(mut position), Some(image)) => {
             log::info!("Setting image for button {}", position);
+
+            if is_encoder {
+                position += 10;
+            }
+            let position = match position {
+                0 => 10,
+                1 => 11,
+                2 => 12,
+                3 => 13,
+                4 => 14,
+                5 => 5,
+                6 => 6,
+                7 => 7,
+                8 => 8,
+                9 => 9,
+                10 => 0,
+                11 => 1,
+                12 => 2,
+                13 => 3,
+                _ => {
+                    log::error!("Invalid key position");
+                    return Err(MirajazzError::BadData);
+                }
+            };
 
             // OpenDeck sends image as a data url, so parse it using a library
             let url = DataUrl::process(image.as_str()).unwrap(); // Isn't expected to fail, so unwrap it is
@@ -196,9 +223,15 @@ pub async fn handle_set_image(device: &Device, evt: SetImageEvent) -> Result<(),
             device
                 .set_button_image(
                     position,
-                    Kind::from_vid_pid(device.vid, device.pid)
-                        .unwrap()
-                        .image_format(),
+                    if is_encoder {
+                        Kind::from_vid_pid(device.vid, device.pid)
+                            .unwrap()
+                            .touch_image_format()
+                    } else {
+                        Kind::from_vid_pid(device.vid, device.pid)
+                            .unwrap()
+                            .image_format()
+                    },
                     image,
                 )
                 .await?;
