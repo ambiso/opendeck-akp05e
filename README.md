@@ -15,7 +15,7 @@ Requires OpenDeck 2.5.0 or newer
 ## Platform support
 
 - Linux: Guaranteed, if stuff breaks - I'll probably catch it before public release
-- Mac: Best effort, no tests before release, things may break, but I probably have means to fix them
+- Mac: Zero effort, no tests before release, if stuff breaks - too bad, it's up to you to contribute fixes
 - Windows: Zero effort, no tests before release, if stuff breaks - too bad, it's up to you to contribute fixes
 
 ## Installation
