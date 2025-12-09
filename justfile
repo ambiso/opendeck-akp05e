@@ -1,4 +1,4 @@
-id := "com.github.ambiso.opendeck-akp.sdPlugin"
+id := "com.github.ambiso.opendeck-akp05.sdPlugin"
 
 release: bump package tag
 
